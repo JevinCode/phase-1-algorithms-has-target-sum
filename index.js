@@ -1,5 +1,17 @@
 function hasTargetSum(array, target) {
   // Write your algorithm here
+  let seen = [];
+  seen[array[0]] = true;
+  for(let i = 1; i < array.length; i++) {
+    const complement = target - array[i];
+    if(seen[complement] === true) {
+      return true;
+    }
+    else {
+      seen[array[i]] = true;
+    }
+  }
+  return false;
 }
 
 /* 
@@ -12,6 +24,11 @@ function hasTargetSum(array, target) {
 
 /*
   Add written explanation of your solution here
+  we will keep an array of the elements we have seen so far.
+  we iterate one by one through our input array, and then for each item, compute the complement.
+  we then check if we have seen the complement already in our seen array.
+  if we have, then we know that two numbers in the array will add to target.
+  if not, then we insert the item into the seen array.
 */
 
 // You can run `node index.js` to view these console logs
